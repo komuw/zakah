@@ -22,7 +22,8 @@ dependencies:
 then run;
 ```shell
 pub get
-```           
+```         
+this lib is also available at [Pub package repository](https://pub.dartlang.org/packages/zakah)    
 
 ## Usage
 
