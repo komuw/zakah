@@ -8,7 +8,7 @@ jobs:
     steps:
         - checkout
         - run:
-            name: install apt and pip deps
+            name: install apt deps and dart
             command: |
                 apt -y update
                 apt -y install curl apt-transport-https
@@ -36,7 +36,7 @@ jobs:
                 pwd
                 ls
                 source /etc/profile && dart --version
-                ource /etc/profile && pub version
+                source /etc/profile && pub version
 
         - run:
             name: run tests;
@@ -50,7 +50,7 @@ jobs:
     steps:
         - checkout
         - run:
-            name: install apt and pip deps
+            name: install apt deps and dart
             command: |
                 apt -y update
                 apt -y install curl apt-transport-https
