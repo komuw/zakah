@@ -37,10 +37,10 @@ class Mpesa {
 
     // todo: handle exceptions
     HttpClient client = new HttpClient();
-    HttpClientRequest f = await client.getUrl(getAuthUrl());
-    f.headers.add("Accept", "application/json");
-    f.headers.add("Authorization", "Basic " + b64keySecret);
-    HttpClientResponse res = await f.close();
+    HttpClientRequest req = await client.getUrl(getAuthUrl());
+    req.headers.add("Accept", "application/json");
+    req.headers.add("Authorization", "Basic " + b64keySecret);
+    HttpClientResponse res = await req.close();
 
     // u should use `await res.drain()` if u aren't reading the body
     await res.transform(utf8.decoder).forEach((bodyString) {
