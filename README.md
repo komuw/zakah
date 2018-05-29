@@ -42,9 +42,8 @@ import 'dart:async';
 import 'package:zakah/zakah.dart' as zakah;
 
 Future<void> main() async {
-  var m =
-      new zakah.Mpesa('KNJH6N40cjL8saPjDmJxvcx1AyVywVzw', 'SQhQ4EeOXMTe96D5');
-  Map b2cResult = await await m.b2c(
+  var m = new zakah.Mpesa('ConsumerKey', 'ConsumerSecret');
+  Map b2cResult = await m.b2c(
       "apitest390",
       "SecurityCredential",
       zakah.CommandID["BusinessPayment"],
