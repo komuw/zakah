@@ -1,5 +1,5 @@
 name: zakah
-version: 0.0.2
+version: 0.0.3
 authors:
 - Komu Wairagu <https://www.komu.engineer/>
 description: Zakah is safaricom's Mpesa client library.

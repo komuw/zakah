@@ -9,7 +9,8 @@ It allows you to integrate with [safaricom mpesa API.](https://developer.safaric
 It's currently work in progress, API will remain unstable for sometime.
 
 
-> M-Pesa (M for mobile, pesa is Swahili for money) is a mobile phone-based money transfer, financing and microfinancing service, launched in 2007 by Safaricom, the largest mobile network operator in Kenya. It has since expanded to Afghanistan, South Africa, India, Romania and Albania. M-Pesa allows users to deposit, withdraw, transfer money and pay for goods and services easily with a mobile device. - https://en.wikipedia.org/wiki/M-Pesa
+> MPesa is a mobile phone-based money transfer, financing and microfinancing service, operated by Safaricom, the largest mobile network operator in Kenya. It has since expanded to other countries.        
+MPesa allows users to deposit, withdraw, transfer money and pay for goods and services easily with a mobile device. - https://en.wikipedia.org/wiki/M-Pesa
 
 
 
