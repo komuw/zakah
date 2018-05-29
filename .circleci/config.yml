@@ -12,6 +12,7 @@ jobs:
             command: |
                 apt -y update
                 apt -y install curl apt-transport-https
+                sh -c 'curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'
                 sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_unstable.list > /etc/apt/sources.list.d/dart_unstable.list'
                 apt -y update
                 apt -y install \
@@ -50,6 +51,7 @@ jobs:
             command: |
                 apt -y update
                 apt -y install curl apt-transport-https
+                sh -c 'curl https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -'
                 sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_unstable.list > /etc/apt/sources.list.d/dart_unstable.list'
                 apt -y update
                 apt -y install \
