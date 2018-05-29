@@ -1,0 +1,10 @@
+name: zakah
+version: 0.0.1
+author: Komu Wairagu <https://www.komu.engineer/>
+description: Zakah is safaricom's Mpesa client library.
+homepage: https://github.com/komuw/zakah/blob/master/mpesa.dart
+environment:
+  sdk: '>=2.0.0-dev.58.0'
+# dependencies:
+dev_dependencies:
+  test: ^0.12.38

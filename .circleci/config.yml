@@ -1,0 +1,82 @@
+# Golang CircleCI 2.0 configuration file
+version: 2
+jobs:
+  build:
+    docker:
+        - image: ubuntu:16.04
+    working_directory: ~/work
+    steps:
+        - checkout
+        - run:
+            name: install apt and pip deps
+            command: |
+                sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_unstable.list > /etc/apt/sources.list.d/dart_unstable.list'
+                apt-get -y update
+                apt -y install \
+                            curl \
+                            wget \
+                            git \
+                            dart \
+                            nano
+
+        - run:
+            name: add dart bin dir to path
+            command: |
+                echo "export PATH=$PATH:/usr/lib/dart/bin" >> /etc/profile
+                echo "export LC_ALL=C.UTF-8" >> /etc/profile
+                echo "export LANG=C.UTF-8" >> /etc/profile
+                source /etc/profile
+
+        - run:
+            name: run tests;
+            command: |
+                source /etc/profile && pub run test --timeout 10s --chain-stack-traces .
+
+  deploy:
+    docker:
+        - image: ubuntu:16.04
+    working_directory: ~/work
+    steps:
+        - checkout
+        - run:
+            name: install apt and pip deps
+            command: |
+                sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_unstable.list > /etc/apt/sources.list.d/dart_unstable.list'
+                apt-get -y update
+                apt -y install \
+                            curl \
+                            wget \
+                            git \
+                            dart \
+                            nano
+
+        - run:
+            name: add dart bin dir to path
+            command: |
+                echo "export PATH=$PATH:/usr/lib/dart/bin" >> /etc/profile
+                echo "export LC_ALL=C.UTF-8" >> /etc/profile
+                echo "export LANG=C.UTF-8" >> /etc/profile
+                source /etc/profile
+
+        - run:
+            name: do a new release
+            command: |
+                LAST_GIT_MESSAGE=$(git log -n1 --format=oneline --pretty=%B)
+                echo "last git commit message on master:"
+                echo $LAST_GIT_MESSAGE
+                if [ "$LAST_GIT_MESSAGE" == 'do release' ]; then
+                    echo "deploying with"
+                    echo "todo, add deploy command"
+                fi
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /^v.*/

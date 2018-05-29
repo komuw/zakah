@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
-import 'dart:developer';
 
 const Map<String, String> CommandID = const {
   "TransactionReversal":
