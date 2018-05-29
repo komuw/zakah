@@ -22,7 +22,16 @@ dependencies:
 then run;
 ```shell
 pub get
-```         
+```             
+or with flutter;
+```shell
+flutter packages get
+```
+now, in your Dart code, you can use:
+```shell
+import 'package:zakah/zakah.dart';
+```
+
 this lib is also available at [Pub package repository](https://pub.dartlang.org/packages/zakah)    
 
 ## Usage
