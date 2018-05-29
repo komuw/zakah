@@ -33,6 +33,7 @@ jobs:
         - run:
             name: check dart version
             command: |
+                pwd
                 ls -lsha
                 source /etc/profile && dart --version
 
