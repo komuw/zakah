@@ -40,7 +40,7 @@ jobs:
         - run:
             name: run tests;
             command: |
-                source /etc/profile && pub run test --timeout 10s --chain-stack-traces .
+                source /etc/profile && pub run test --timeout 10s --chain-stack-traces $(pwd)
 
   deploy:
     docker:
