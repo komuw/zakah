@@ -38,10 +38,10 @@ jobs:
                 source /etc/profile && dart --version
                 source /etc/profile && pub version
 
-        # - run:
-        #     name: run tests;
-        #     command: |
-        #         source /etc/profile && pub run test --timeout 10s --chain-stack-traces $(pwd)
+        - run:
+            name: run tests;
+            command: |
+                source /etc/profile && pub run test --timeout 10s --chain-stack-traces $(pwd)
 
   deploy:
     docker:
@@ -79,8 +79,8 @@ jobs:
                 echo "last git commit message on master:"
                 echo $LAST_GIT_MESSAGE
                 if [ "$LAST_GIT_MESSAGE" == 'do release' ]; then
-                    echo "deploying with"
-                    echo "todo, add deploy command"
+                    echo "publishing to; https://pub.dartlang.org "
+                    pub publish -f
                 fi
 
 workflows:
