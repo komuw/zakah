@@ -10,9 +10,11 @@ jobs:
         - run:
             name: install apt and pip deps
             command: |
+                apt -y install curl
                 sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_unstable.list > /etc/apt/sources.list.d/dart_unstable.list'
                 apt -y update
                 apt -y install \
+                            curl \
                             wget \
                             git \
                             dart \
@@ -40,9 +42,11 @@ jobs:
         - run:
             name: install apt and pip deps
             command: |
+                apt -y install curl
                 sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_unstable.list > /etc/apt/sources.list.d/dart_unstable.list'
                 apt -y update
                 apt -y install \
+                            curl \
                             wget \
                             git \
                             dart \
