@@ -6,7 +6,7 @@ Zakah is a client library for safaricom's Mpesa API.
 It's name is derived from Kenyan hip hop artiste, Zakah.                        
 It allows you to integrate with [safaricom mpesa API.](https://developer.safaricom.co.ke/)       
 
-> M-Pesa (M for mobile, pesa is Swahili for money) is a mobile phone-based money transfer, financing and microfinancing service, launched in 2007 by Safaricom, the largest mobile network operators in Kenya. It has since expanded to Afghanistan, South Africa, India, Romania and Albania. M-Pesa allows users to deposit, withdraw, transfer money and pay for goods and services easily with a mobile device. - https://en.wikipedia.org/wiki/M-Pesa
+> M-Pesa (M for mobile, pesa is Swahili for money) is a mobile phone-based money transfer, financing and microfinancing service, launched in 2007 by Safaricom, the largest mobile network operator in Kenya. It has since expanded to Afghanistan, South Africa, India, Romania and Albania. M-Pesa allows users to deposit, withdraw, transfer money and pay for goods and services easily with a mobile device. - https://en.wikipedia.org/wiki/M-Pesa
 
 
 
