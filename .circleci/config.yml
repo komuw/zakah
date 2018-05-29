@@ -31,11 +31,12 @@ jobs:
                 source /etc/profile
 
         - run:
-            name: check dart version
+            name: check dart and pub version
             command: |
                 pwd
-                ls -lsha
+                ls
                 source /etc/profile && dart --version
+                ource /etc/profile && pub version
 
         - run:
             name: run tests;
