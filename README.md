@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/komuw/zakah.svg?style=svg)](https://circleci.com/gh/komuw/zakah)
 
-Zakah is safaricom's Mpesa client library.           
+Zakah is a client library for safaricom's Mpesa API.           
 It's name is derived from Kenyan hip hop artiste, Zakah.                        
 It allows you to integrate with [safaricom mpesa API.](https://developer.safaricom.co.ke/)       
 
