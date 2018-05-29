@@ -11,7 +11,7 @@ jobs:
             name: install apt and pip deps
             command: |
                 apt -y update
-                apt -y install curl
+                apt -y install curl apt-transport-https
                 sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_unstable.list > /etc/apt/sources.list.d/dart_unstable.list'
                 apt -y update
                 apt -y install \
@@ -49,7 +49,7 @@ jobs:
             name: install apt and pip deps
             command: |
                 apt -y update
-                apt -y install curl
+                apt -y install curl apt-transport-https
                 sh -c 'curl https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_unstable.list > /etc/apt/sources.list.d/dart_unstable.list'
                 apt -y update
                 apt -y install \
