@@ -80,7 +80,7 @@ jobs:
                 echo $LAST_GIT_MESSAGE
                 if [ "$LAST_GIT_MESSAGE" == 'do release' ]; then
                     echo "publishing to; https://pub.dartlang.org "
-                    source /etc/profile && pub publish -f
+                    source /etc/profile && pub publish
                 fi
 
 workflows:
