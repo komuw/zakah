@@ -34,7 +34,7 @@ jobs:
             name: check dart and pub version
             command: |
                 pwd
-                ls
+                ls -lha
                 source /etc/profile && dart --version
                 source /etc/profile && pub version
 
