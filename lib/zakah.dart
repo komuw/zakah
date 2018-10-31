@@ -46,7 +46,7 @@ class Mpesa {
         scheme: 'https',
         host: baseSafaricomUrl,
         path: '/oauth/v1/generate',
-        queryParameters: {'grant_type': 'client_credentials'});
+        queryParameters: <String, String>{'grant_type': 'client_credentials'});
     return uri;
   }
 
@@ -68,9 +68,10 @@ class Mpesa {
 
     // u should use `await res.drain()` if u aren't reading the body
     await res.transform(utf8.decoder).forEach((bodyString) {
-      var jsondecodeBody = jsonDecode(bodyString);
-      access_token = jsondecodeBody["access_token"];
-      access_expires_at = now.add(new Duration(seconds: int.parse(jsondecodeBody["expires_in"])));
+      dynamic jsondecodeBody = jsonDecode(bodyString);
+      access_token = jsondecodeBody["access_token"].toString();
+      access_expires_at =
+          now.add(new Duration(seconds: int.parse(jsondecodeBody["expires_in"].toString())));
     });
   }
 
@@ -109,17 +110,17 @@ class Mpesa {
     HttpClientResponse res = await req.close();
 
     await res.transform(utf8.decoder).forEach((bodyString) {
-      var jsondecodeBody = jsonDecode(bodyString);
+      dynamic jsondecodeBody = jsonDecode(bodyString);
 
       if (res.statusCode == 200) {
-        result["ConversationID"] = jsondecodeBody["ConversationID"];
-        result["OriginatorConversationID"] = jsondecodeBody["OriginatorConversationID"];
-        result["ResponseCode"] = jsondecodeBody["ResponseCode"];
-        result["ResponseDescription"] = jsondecodeBody["ResponseDescription"];
+        result["ConversationID"] = jsondecodeBody["ConversationID"].toString();
+        result["OriginatorConversationID"] = jsondecodeBody["OriginatorConversationID"].toString();
+        result["ResponseCode"] = jsondecodeBody["ResponseCode"].toString();
+        result["ResponseDescription"] = jsondecodeBody["ResponseDescription"].toString();
       } else {
-        result["requestId"] = jsondecodeBody["requestId"];
-        result["errorCode"] = jsondecodeBody["errorCode"];
-        result["errorMessage"] = jsondecodeBody["errorMessage"];
+        result["requestId"] = jsondecodeBody["requestId"].toString();
+        result["errorCode"] = jsondecodeBody["errorCode"].toString();
+        result["errorMessage"] = jsondecodeBody["errorMessage"].toString();
       }
     });
     return result;
