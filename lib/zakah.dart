@@ -3,26 +3,20 @@ import 'dart:async';
 import 'dart:convert';
 
 const Map<String, String> CommandID = const {
-  "TransactionReversal":
-      "TransactionReversal", //Reversal for an erroneous C2B transaction.
+  "TransactionReversal": "TransactionReversal", //Reversal for an erroneous C2B transaction.
   "SalaryPayment":
       "SalaryPayment", //	Used to send money from an employer to employees e.g. salaries
-  "BusinessPayment":
-      "BusinessPayment", //	Used to send money from business to customer e.g. refunds
+  "BusinessPayment": "BusinessPayment", //	Used to send money from business to customer e.g. refunds
   "PromotionPayment":
       "PromotionPayment", //	Used to send money when promotions take place e.g. raffle winners
   "AccountBalance":
       "AccountBalance", //	Used to check the balance in a paybill/buy goods account (includes utility, MMF, Merchant, Charges paid account).
   "CustomerPayBillOnline":
       "CustomerPayBillOnline", //	Used to simulate a transaction taking place in the case of C2B Simulate Transaction or to initiate a transaction on behalf of the customer (STK Push).
-  "TransactionStatusQuery":
-      "TransactionStatusQuery", //	Used to query the details of a transaction.
-  "CheckIdentity":
-      "CheckIdentity", //	Similar to STK push, uses M-Pesa PIN as a service.
-  "BusinessPayBill":
-      "BusinessPayBill", //	Sending funds from one paybill to another paybill
-  "BusinessBuyGoods":
-      "BusinessBuyGoods", //	sending funds from buy goods to another buy goods.
+  "TransactionStatusQuery": "TransactionStatusQuery", //	Used to query the details of a transaction.
+  "CheckIdentity": "CheckIdentity", //	Similar to STK push, uses M-Pesa PIN as a service.
+  "BusinessPayBill": "BusinessPayBill", //	Sending funds from one paybill to another paybill
+  "BusinessBuyGoods": "BusinessBuyGoods", //	sending funds from buy goods to another buy goods.
   "DisburseFundsToBusiness":
       "DisburseFundsToBusiness", //	Transfer of funds from utility to MMF account.
   "BusinessToBusinessTransfer":
@@ -31,11 +25,7 @@ const Map<String, String> CommandID = const {
       "BusinessTransferFromMMFToUtility", //	Transferring funds from paybills MMF to another paybills utility account.
 };
 
-const Map<String, int> IdentifierType = const {
-  "MSISDN": 1,
-  "TillNumber": 2,
-  "Shortcode": 4
-};
+const Map<String, int> IdentifierType = const {"MSISDN": 1, "TillNumber": 2, "Shortcode": 4};
 
 class Mpesa {
   final String consumerKey;
@@ -46,8 +36,7 @@ class Mpesa {
   DateTime access_expires_at;
 
   Mpesa(this.consumerKey, this.consumerSecret)
-      : b64keySecret =
-            base64Url.encode((consumerKey + ":" + consumerSecret).codeUnits);
+      : b64keySecret = base64Url.encode((consumerKey + ":" + consumerSecret).codeUnits);
 
   // todo: change this url depending on env, test/live
   static const String baseSafaricomUrl = "sandbox.safaricom.co.ke";
@@ -81,29 +70,18 @@ class Mpesa {
     await res.transform(utf8.decoder).forEach((bodyString) {
       var jsondecodeBody = jsonDecode(bodyString);
       access_token = jsondecodeBody["access_token"];
-      access_expires_at = now
-          .add(new Duration(seconds: int.parse(jsondecodeBody["expires_in"])));
+      access_expires_at = now.add(new Duration(seconds: int.parse(jsondecodeBody["expires_in"])));
     });
   }
 
   static Uri getB2cUrl() {
-    Uri uri = new Uri(
-        scheme: 'https',
-        host: baseSafaricomUrl,
-        path: '/mpesa/b2c/v1/paymentrequest');
+    Uri uri =
+        new Uri(scheme: 'https', host: baseSafaricomUrl, path: '/mpesa/b2c/v1/paymentrequest');
     return uri;
   }
 
-  Future<Map<String, String>> b2c(
-      String initiatorName,
-      String securityCredential,
-      String commandid,
-      int amount,
-      String partyA,
-      String partyB,
-      String remarks,
-      Uri queueTimeOutURL,
-      Uri resultURL,
+  Future<Map<String, String>> b2c(String initiatorName, String securityCredential, String commandid,
+      int amount, String partyA, String partyB, String remarks, Uri queueTimeOutURL, Uri resultURL,
       {String occasion}) async {
     await setAccessToken();
 
@@ -135,8 +113,7 @@ class Mpesa {
 
       if (res.statusCode == 200) {
         result["ConversationID"] = jsondecodeBody["ConversationID"];
-        result["OriginatorConversationID"] =
-            jsondecodeBody["OriginatorConversationID"];
+        result["OriginatorConversationID"] = jsondecodeBody["OriginatorConversationID"];
         result["ResponseCode"] = jsondecodeBody["ResponseCode"];
         result["ResponseDescription"] = jsondecodeBody["ResponseDescription"];
       } else {
