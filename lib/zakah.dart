@@ -67,7 +67,7 @@ class Mpesa {
     HttpClientResponse res = await req.close();
 
     // u should use `await res.drain()` if u aren't reading the body
-    await res.transform(utf8.decoder).forEach((bodyString) {
+    await utf8.decoder.bind(res).forEach((bodyString) {
       dynamic jsondecodeBody = jsonDecode(bodyString);
       access_token = jsondecodeBody["access_token"].toString();
       access_expires_at =
@@ -109,7 +109,7 @@ class Mpesa {
     req.write(jsonEncode(b2cPayload)); // write is non-blocking
     HttpClientResponse res = await req.close();
 
-    await res.transform(utf8.decoder).forEach((bodyString) {
+    await utf8.decoder.bind(res).forEach((bodyString) {
       dynamic jsondecodeBody = jsonDecode(bodyString);
 
       if (res.statusCode == 200) {
