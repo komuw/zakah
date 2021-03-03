@@ -56,10 +56,8 @@ class Mpesa {
   Future<void> setAccessToken() async {
     // if access token hasn't expired, dont make http call
     DateTime now = DateTime.now();
-    if (access_expires_at != null) {
-      if (now.isBefore(access_expires_at)) {
-        return;
-      }
+    if (now.isBefore(access_expires_at)) {
+      return;
     }
 
     // todo: handle exceptions
