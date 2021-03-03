@@ -42,7 +42,8 @@ jobs:
             name: run tests and static analyzers;
             command: |
                 source /etc/profile && dart format --fix --line-length 100 --set-exit-if-changed .
-                source /etc/profile && dartanalyzer --no-declaration-casts --no-implicit-casts --no-implicit-dynamic --fatal-warnings .
+                source /etc/profile && dart fix --apply
+                source /etc/profile && dart analyze --fatal-infos --fatal-warnings .
                 # source /etc/profile && pub run test --timeout 10s --chain-stack-traces $(pwd)
 
   deploy:
