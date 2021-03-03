@@ -32,8 +32,8 @@ class Mpesa {
   final String consumerSecret;
   final String b64keySecret;
 
-  String access_token;
-  DateTime access_expires_at;
+  late String access_token;
+  DateTime? access_expires_at;
 
   Mpesa(this.consumerKey, this.consumerSecret)
       : b64keySecret = base64Url.encode((consumerKey + ":" + consumerSecret).codeUnits);
@@ -54,7 +54,7 @@ class Mpesa {
     // if access token hasn't expired, dont make http call
     DateTime now = DateTime.now();
     if (access_expires_at != null) {
-      if (now.isBefore(access_expires_at)) {
+      if (now.isBefore(access_expires_at!)) {
         return;
       }
     }
@@ -80,9 +80,9 @@ class Mpesa {
     return uri;
   }
 
-  Future<Map<String, String>> b2c(String initiatorName, String securityCredential, String commandid,
+  Future<Map<String, String>> b2c(String initiatorName, String securityCredential, String? commandid,
       int amount, String partyA, String partyB, String remarks, Uri queueTimeOutURL, Uri resultURL,
-      {String occasion}) async {
+      {String? occasion}) async {
     await setAccessToken();
 
     // this values can be got from; https://developer.safaricom.co.ke/test_credentials

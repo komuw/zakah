@@ -5,7 +5,7 @@ authors:
 description: Zakah is safaricom's Mpesa client library.
 homepage: https://github.com/komuw/zakah
 environment:
-  sdk: '>=2.0.0-dev.58.0 <3.0.0'
+  sdk: '>=2.12.0 <3.0.0'
 # dependencies:
 dev_dependencies:
   test: '>=1.0.0'
