@@ -33,7 +33,10 @@ class Mpesa {
   final String b64keySecret;
 
   late String access_token;
-  DateTime? access_expires_at;
+
+  // start with an access token that is set to expire in the past.
+  // this will cause the first run to set a new token
+  DateTime access_expires_at = DateTime.now().subtract(const Duration(days: 50));
 
   Mpesa(this.consumerKey, this.consumerSecret)
       : b64keySecret = base64Url.encode((consumerKey + ":" + consumerSecret).codeUnits);
@@ -54,7 +57,7 @@ class Mpesa {
     // if access token hasn't expired, dont make http call
     DateTime now = DateTime.now();
     if (access_expires_at != null) {
-      if (now.isBefore(access_expires_at!)) {
+      if (now.isBefore(access_expires_at)) {
         return;
       }
     }
