@@ -2,7 +2,7 @@ import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
 
-const Map<String, String> CommandID = const {
+const Map<String, String> CommandID = {
   "TransactionReversal": "TransactionReversal", //Reversal for an erroneous C2B transaction.
   "SalaryPayment":
       "SalaryPayment", //	Used to send money from an employer to employees e.g. salaries
@@ -25,7 +25,7 @@ const Map<String, String> CommandID = const {
       "BusinessTransferFromMMFToUtility", //	Transferring funds from paybills MMF to another paybills utility account.
 };
 
-const Map<String, int> IdentifierType = const {"MSISDN": 1, "TillNumber": 2, "Shortcode": 4};
+const Map<String, int> IdentifierType = {"MSISDN": 1, "TillNumber": 2, "Shortcode": 4};
 
 class Mpesa {
   final String consumerKey;
@@ -42,7 +42,7 @@ class Mpesa {
   static const String baseSafaricomUrl = "sandbox.safaricom.co.ke";
 
   static Uri getAuthUrl() {
-    Uri uri = new Uri(
+    Uri uri = Uri(
         scheme: 'https',
         host: baseSafaricomUrl,
         path: '/oauth/v1/generate',
@@ -52,7 +52,7 @@ class Mpesa {
 
   Future<void> setAccessToken() async {
     // if access token hasn't expired, dont make http call
-    DateTime now = new DateTime.now();
+    DateTime now = DateTime.now();
     if (access_expires_at != null) {
       if (now.isBefore(access_expires_at)) {
         return;
@@ -60,7 +60,7 @@ class Mpesa {
     }
 
     // todo: handle exceptions
-    HttpClient client = new HttpClient();
+    HttpClient client = HttpClient();
     HttpClientRequest req = await client.getUrl(getAuthUrl());
     req.headers.add("Accept", "application/json");
     req.headers.add("Authorization", "Basic " + b64keySecret);
@@ -71,13 +71,12 @@ class Mpesa {
       dynamic jsondecodeBody = jsonDecode(bodyString);
       access_token = jsondecodeBody["access_token"].toString();
       access_expires_at =
-          now.add(new Duration(seconds: int.parse(jsondecodeBody["expires_in"].toString())));
+          now.add(Duration(seconds: int.parse(jsondecodeBody["expires_in"].toString())));
     });
   }
 
   static Uri getB2cUrl() {
-    Uri uri =
-        new Uri(scheme: 'https', host: baseSafaricomUrl, path: '/mpesa/b2c/v1/paymentrequest');
+    Uri uri = Uri(scheme: 'https', host: baseSafaricomUrl, path: '/mpesa/b2c/v1/paymentrequest');
     return uri;
   }
 
@@ -99,10 +98,10 @@ class Mpesa {
       "ResultURL": resultURL.toString(),
       "Occasion": occasion
     };
-    final Map<String, String> result = new Map<String, String>();
+    final Map<String, String> result = Map<String, String>();
 
     // todo: handle exceptions
-    HttpClient client = new HttpClient();
+    HttpClient client = HttpClient();
     HttpClientRequest req = await client.postUrl(getB2cUrl());
     req.headers.add("Content-Type", "application/json");
     req.headers.add("Authorization", "Bearer " + access_token);
