@@ -31,12 +31,11 @@ jobs:
                 source /etc/profile
 
         - run:
-            name: check dart and pub version
+            name: check dart version
             command: |
                 pwd
                 ls -lha
                 source /etc/profile && dart --version
-                source /etc/profile && pub version
 
         - run:
             name: run tests and static analyzers;
@@ -44,7 +43,7 @@ jobs:
                 source /etc/profile && dart format --fix --line-length 100 --set-exit-if-changed .
                 source /etc/profile && dart fix --apply
                 source /etc/profile && dart analyze --fatal-infos --fatal-warnings .
-                # source /etc/profile && pub run test --timeout 10s --chain-stack-traces $(pwd)
+                source /etc/profile && dart test --timeout 10s --chain-stack-traces --coverage=/tmp/zakahCoverage --test-randomize-ordering-seed random .
 
   deploy:
     docker:
@@ -83,7 +82,7 @@ jobs:
                 echo $LAST_GIT_MESSAGE
                 if [ "$LAST_GIT_MESSAGE" == 'do release' ]; then
                     echo "publishing to; https://pub.dartlang.org "
-                    source /etc/profile && pub publish
+                    source /etc/profile && dart pub publish
                 fi
 
 workflows:
