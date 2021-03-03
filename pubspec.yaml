@@ -10,5 +10,5 @@ environment:
 dev_dependencies:
   test: '>=1.0.0'
 
-# pub publish --dry-run
-# pub publish
+# dart pub publish --dry-run
+# dart pub publish
