@@ -80,9 +80,9 @@ class Mpesa {
     return uri;
   }
 
-  Future<Map<String, String>> b2c(String initiatorName, String securityCredential, String? commandid,
+  Future<Map<String, String>> b2c(String initiatorName, String securityCredential, String commandid,
       int amount, String partyA, String partyB, String remarks, Uri queueTimeOutURL, Uri resultURL,
-      {String? occasion}) async {
+      {required String occasion}) async {
     await setAccessToken();
 
     // this values can be got from; https://developer.safaricom.co.ke/test_credentials
